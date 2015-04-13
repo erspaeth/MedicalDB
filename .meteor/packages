@@ -7,3 +7,11 @@
 meteor-platform
 autopublish
 insecure
+aldeed:collection2
+twbs:bootstrap
+momentjs:moment
+msavin:mongol
+multiply:iron-router-progress
+accounts-ui
+accounts-password
+aldeed:autoform
