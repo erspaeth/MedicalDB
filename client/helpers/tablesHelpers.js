@@ -1,18 +1,23 @@
 Template.providersTableAndForm.helpers({
 
   clinicSelectOption: function(){
-    var c = Clinics.find({}, {fields: {number: 1, _id: 1}}).fetch();
-    $.each(c, function( i , val){
 
-
-
+    return Clinics.find().map(function (c) {
+      return {label: c.name, value: c.number};
     });
 
-    return [
-      {label: "1", value: 1},
-      {label: "2", value: 2}
-    ];
 
+  }
+});
+
+Template.patientsTableAndForm.helpers({
+
+  genderOption: function() {
+
+    return [
+      {label: "Male", value: "M"},
+      {label: "Female", value: "F"}
+    ];
   }
 
 });
