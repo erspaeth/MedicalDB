@@ -1,0 +1,25 @@
+
+
+<template name="patientSelectModal">
+
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Select Patient</h4>
+                </div>
+
+                <div class="modal-body">
+                    {{> quickForm schema="Schemas.FindPatientForm" id="findPatientForm"}}
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</template>

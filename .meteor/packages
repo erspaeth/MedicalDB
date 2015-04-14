@@ -17,3 +17,6 @@ accounts-password
 aldeed:autoform
 aldeed:tabular
 mrt:bootstrap-growl
+rajit:bootstrap3-datepicker
+aldeed:autoform-bs-datepicker
+peppelg:bootstrap-3-modal

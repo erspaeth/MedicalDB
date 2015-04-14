@@ -21,7 +21,7 @@ Meteor.startup(function () {
           street: "1234 Broadway Ave",
           city: "BrownTown",
           state: "MN",
-          zip: 98765
+          zip: "98765"
         }
       };
 
@@ -34,7 +34,7 @@ Meteor.startup(function () {
           street: "111 Street Ave",
           city: "BrownTown",
           state: "MN",
-          zip: 98762
+          zip: "98762"
         }
       };
 
