@@ -1,0 +1,28 @@
+<template name="updatePatient">
+
+<h2>Update Info</h2>
+<h3>{{currentPatientName}}</h3>
+
+<!--
+{{> quickForm collection="Patients" doc=currentPatientDoc id="updatePatientForm" type="update"}}
+-->
+
+{{#autoForm collection="Patients" doc=currentPatientDoc id="updatePatientForm" type="update"}}
+  <fieldset>
+      {{> afQuickField name='height'}}
+      {{> afQuickField name='weight'}}
+      {{> afQuickField name='primaryProvider'}}
+      {{> afQuickField name='secondaryProvider'}}
+      {{> afArrayField name='conditions'}}
+      {{> afArrayField name='assistiveDevices'}}
+      <button type="submit" class="btn btn-primary">Update</button>
+  </fieldset>
+{{/autoForm}}
+
+
+
+<!--
+{{> quickForm id="updateConditionsForm" type="update-pushArray" collection=Patients doc=currentPatientDoc scope="conditions"}}
+-->
+
+</template>

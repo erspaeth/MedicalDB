@@ -16,3 +16,23 @@ Template.registerHelper('currentPatientName', function(){
   return r;
 
 });
+
+Template.registerHelper('currentPatientSelected', function(){
+
+  if (Session.get("currentPatient") === (null || undefined)){
+    return false;
+  }
+  else
+    return true;
+
+});
+
+Template.registerHelper('currentPatientDoc', function(){
+
+  var pID = Session.get("currentPatient");
+  var p = Patients.findOne({_id: pID});
+  console.log("returned document");
+  console.log(p);
+  return p;
+
+});

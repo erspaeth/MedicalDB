@@ -1,0 +1,17 @@
+<template name="addPatient">
+
+  {{#autoForm collection="Patients" id="insertPatientForm" type="insert"}}
+    <fieldset>
+      <legend>Add A New Patient</legend>
+      {{> afQuickField name="firstName"}}
+      {{> afQuickField name="lastName"}}
+      {{> afQuickField name="dateOfBirth"}}
+      {{> afQuickField name="gender" options=genderOption noselect="true"}}
+      {{> afQuickField name="primaryProvider"}}
+      {{> afQuickField name="secondaryProvider"}}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+
+  {{/autoForm}}
+
+</template>
