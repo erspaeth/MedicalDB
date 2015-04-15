@@ -13,3 +13,24 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
 
     ]
   });
+
+  TabularTables.Patients = new Tabular.Table({
+    name: "Patient List",
+    collection: Patients,
+    columns: [
+      {data: "firstName", title: "First Name"},
+      {data: "lastName", title: "Last Name"},
+      {
+        data: "dateOfBirth",
+       title: "DOB",
+       render: function (val, type, doc) {
+          if (val instanceof Date) {
+            return moment(val).calendar();
+          } else {
+            return "Never";
+          }
+        }
+      }
+
+    ]
+  });
