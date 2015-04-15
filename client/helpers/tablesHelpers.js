@@ -1,14 +1,3 @@
-Template.providersTableAndForm.helpers({
-
-  clinicSelectOption: function(){
-
-    return Clinics.find().map(function (c) {
-      return {label: c.name, value: c.number};
-    });
-
-
-  }
-});
 
 Template.patientsTableAndForm.helpers({
 

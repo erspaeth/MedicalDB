@@ -1,0 +1,22 @@
+<template name="addVisit">
+
+  {{#autoForm collection="Visits" id="addVisitForm" type="normal"}}
+    <fieldset>
+      <legend>Visit</legend>
+      {{> afQuickField name="visitNumber"}}
+      {{> afQuickField name="clinic_id" options=clinicSelectOption}}
+      {{> afQuickField name="icd9Primary"}}
+      {{> afQuickField name="icd9Secondary"}}
+      {{> afQuickField name="diagnosis"}}
+
+      {{> afQuickField name="studyType"}}
+      {{> afQuickField name="systemUsed"}}
+      {{> afQuickField name="treatment"}}
+      {{> afQuickField name="tests"}}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+
+  {{/autoForm}}
+
+
+</template>
