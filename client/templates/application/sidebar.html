@@ -9,10 +9,19 @@
                 </a>
             </li>
             <li>
-
                 {{> patientSidebarSelect}}
-
             </li>
+            <li>
+              <a href="/addPatient">Add Patient</a>
+            </li>
+            {{#if currentPatientSelected}}
+
+            <li>
+              <a href="/updatePatient">Update Patient Record</a>
+            </li>
+
+            {{/if}}
+
             <li>
               <a href="/tables">View Tables</a>
             </li>
