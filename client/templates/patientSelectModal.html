@@ -8,10 +8,14 @@
 
                 <div class="modal-header">
                     <h4 class="modal-title">Select Patient</h4>
+                    <h5 class="modal-title">Current Patient: {{currentPatientName}}</h5>
+
                 </div>
 
                 <div class="modal-body">
-                    {{> quickForm schema="Schemas.FindPatientForm" id="findPatientForm"}}
+
+                  {{> tabular table=TabularTables.Patients class="table table-striped table-bordered table-condensed"}}
+
                 </div>
 
                 <div class="modal-footer">
