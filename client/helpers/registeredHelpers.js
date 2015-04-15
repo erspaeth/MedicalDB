@@ -36,3 +36,10 @@ Template.registerHelper('currentPatientDoc', function(){
   return p;
 
 });
+
+Template.registerHelper('clinicSelectOption', function(){
+
+    return Clinics.find().map(function (c) {
+      return {label: c.name, value: c.number};
+    });
+});
