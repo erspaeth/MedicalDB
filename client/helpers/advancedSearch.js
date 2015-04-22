@@ -13,30 +13,39 @@ AutoForm.hooks({
     onSubmit: function (insertDoc, updateDoc, currentDoc) {
 
       this.event.preventDefault();
+      var input = insertDoc.conditions;
 
-      console.log("hook conditions SearchForm called");
 
-        var input = insertDoc.conditions;
-        var r;
-        console.log(input);
 
-        if (input){
 
-          AdvancedSearchSelector.set({conditions: {$in: input}});
+      if (input === (null || undefined)){
+        this.done();
+        return false;
+      }
 
-        }
+      AdvancedSearchSelector.set({conditions: {$in: input}});
       this.done();
       return false;
     }
+  },
+
+  dobSearchForm: {
+    onSubmit: function(insertDoc, updateDoc, currentDoc) {
+
+      this.event.preventDefault();
+
+      AdvancedSearchSelector.set({dateOfBirth: {$gte: insertDoc.date1, $lte: insertDoc.date2}});
+
+      this.done();
+      return false;
+
+    }
   }
+
 });
 
 Template.advancedSearch.helpers({
-  advancedSearchResults: function(){
 
-    return Patients.find(AdvancedSearchSelector.get());
-
-  },
   advancedSelector: function(){
 
     if (_.isNull(AdvancedSearchSelector.get())){
@@ -45,7 +54,17 @@ Template.advancedSearch.helpers({
     else{
       return AdvancedSearchSelector.get();
     }
+  }
 
+});
+
+Template.advancedSearch.events({
+
+  'click tbody > tr': function (event) {
+
+    var dataTable = $(event.target).closest('table').DataTable();
+    var rowData = dataTable.row(event.currentTarget).data();
+    Session.set("currentPatient", rowData._id);
   }
 
 });
