@@ -4,6 +4,7 @@ TabularTables = {};
 // this is not actually an error, JSHint just thinks it is
 Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
 
+/*
   TabularTables.Providers = new Tabular.Table({
     name: "Provider List",
     collection: Providers,
@@ -13,6 +14,8 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
 
     ]
   });
+*/
+
 
   TabularTables.Patients = new Tabular.Table({
     name: "Patient List",
@@ -36,8 +39,10 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
     ]
   });
 
+
+
   TabularTables.AdvancedSearch = new Tabular.Table({
-    name: "Patient List",
+    name: "Advanced Patient Search",
     collection: Patients,
     columns: [
       {data: "firstName", title: "First Name"},

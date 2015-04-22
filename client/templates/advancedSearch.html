@@ -4,12 +4,10 @@
 
     {{> tabular table=TabularTables.AdvancedSearch selector=advancedSelector class="table table-striped table-bordered table-condensed"}}
 
-    {{advancedSearchTable}}
+  {{#each advancedSearchResults}}
+    <br />
+    {{firstName}} {{lastName}}
 
-</template>
-
-<template name="advancedSearchTable">
-
-  {{> tabular table=TabularTables.AdvancedSearch selector=selector class="table table-striped table-bordered table-condensed"}}
+  {{/each}}
 
 </template>

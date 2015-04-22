@@ -1,7 +1,9 @@
-Template.advancedSearch.onRendered(function(){
+SearchResults = new Mongo.Collection('searchResults');
 
-  advancedSelector = new ReactiveVar();
-  advancedSelector = {conditions: {$in: "Cancer"}};
+
+Template.advancedSearch.onCreated(function(){
+
+  AdvancedSearchSelector = new ReactiveVar({});
 
 });
 
@@ -15,15 +17,13 @@ AutoForm.hooks({
       console.log("hook conditions SearchForm called");
 
         var input = insertDoc.conditions;
+        var r;
         console.log(input);
 
         if (input){
-          var inputString = input.join();
-          console.log(inputString);
 
-          advancedSelector = {conditions: {$in: input}};
+          AdvancedSearchSelector.set({conditions: {$in: input}});
 
-          console.log(advancedSelector);
         }
       this.done();
       return false;
@@ -32,9 +32,20 @@ AutoForm.hooks({
 });
 
 Template.advancedSearch.helpers({
-  selector: function(){
+  advancedSearchResults: function(){
 
-    return {conditions: {$in: "Cancer"}};
+    return Patients.find(AdvancedSearchSelector.get());
+
+  },
+  advancedSelector: function(){
+
+    if (_.isNull(AdvancedSearchSelector.get())){
+      return null;
+    }
+    else{
+      return AdvancedSearchSelector.get();
+    }
 
   }
+
 });
