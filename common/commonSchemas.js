@@ -32,6 +32,21 @@ Schemas.AdvancedSearchConditions = new SimpleSchema({
 
 });
 
+Schemas.AdvancedSearchDOB = new SimpleSchema({
+
+  date1: {
+    type: Date,
+    label: "Early Date",
+    optional: false
+  },
+  date2: {
+    type: Date,
+    label: "Late Date",
+    optional: false
+  }
+
+});
+
 Schemas.addVisitForm = new SimpleSchema({
 
   visitNumber:{

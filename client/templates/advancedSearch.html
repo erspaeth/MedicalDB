@@ -1,13 +1,8 @@
 <template name="advancedSearch">
 
     {{> quickForm schema="Schemas.AdvancedSearchConditions" id="conditionsSearchForm" type="normal"}}
+    {{>quickForm schema="Schemas.AdvancedSearchDOB" id="dobSearchForm" type="normal"}}
 
     {{> tabular table=TabularTables.AdvancedSearch selector=advancedSelector class="table table-striped table-bordered table-condensed"}}
-
-  {{#each advancedSearchResults}}
-    <br />
-    {{firstName}} {{lastName}}
-
-  {{/each}}
 
 </template>
