@@ -3,13 +3,15 @@ AutoForm.hooks({
     onSubmit: function (insertDoc, updateDoc, currentDoc) {
 
       this.event.preventDefault();
+      console.log("add visit hook called");
 
-      console.log("hook called");
+      var pID = Session.get('currentPatient');
+      var doc = insertDoc;
+      doc.patient_id = pID;
 
-      var visitID = Visits.insert(insertDoc);
+      console.log(doc);
+      var visitID = Visits.insert(doc);
       console.log("new visit with id: " + visitID);
-
-      pID = Session.get('currentPatient');
 
       if(Patients.update({_id: pID}, {$push: {visits: visitID}})){
 

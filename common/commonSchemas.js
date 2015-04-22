@@ -21,3 +21,75 @@ Schemas.FindPatientForm = new SimpleSchema({
   }
 
 });
+
+Schemas.AdvancedSearchConditions = new SimpleSchema({
+
+  conditions: {
+    type: [String],
+    label: "Conditions",
+    optional: true
+  }
+
+});
+
+Schemas.addVisitForm = new SimpleSchema({
+
+  visitNumber:{
+    type: String,
+    label: "Visit Number",
+    optional:false,
+    regEx: /^[\d]{4}$/
+  },
+  clinic_id:{
+    type: Number,
+    label: "Clinic Number",
+    optional:false
+  },
+  icd9Primary:{
+    type: [String],
+    label: "ICD Primary Codes",
+    defaultValue: [],
+    regEx: /^([EV])?\d{3,3}(\.\d{1,2})?$/,
+    optional:false
+  },
+  icd9Secondary:{
+    type: [String],
+    label: "ICD Secondary Codes",
+    defaultValue: [],
+    regEx: /^([EV])?\d{3,3}(\.\d{1,2})?$/,
+    optional:false
+  },
+  diagnosis:{
+    type: [String],
+    label: "Diagnosis",
+    defaultValue: [],
+    optional:false
+  },
+  studyType:{
+    type: [String],
+    label: "Type Of Study",
+    defaultValue: [],
+    regEx: SimpleSchema.RegEx.Id,
+    optional:false
+  },
+  systemUsed:{
+    type: [String],
+    label: "System Used",
+    defaultValue: [],
+    regEx: SimpleSchema.RegEx.Id,
+    optional:false
+  },
+  treatment:{
+    type: [String],
+    label: "Treatments",
+    defaultValue: [],
+    optional:false
+  },
+  tests:{
+    type: [Schemas.Test],
+    label: "Tests",
+    defaultValue: [],
+    optional:false
+  }
+
+});

@@ -30,7 +30,30 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
             return "Never";
           }
         }
-      }
+      },
+      {data: "conditions", title: "Conditions"}
+
+    ]
+  });
+
+  TabularTables.AdvancedSearch = new Tabular.Table({
+    name: "Patient List",
+    collection: Patients,
+    columns: [
+      {data: "firstName", title: "First Name"},
+      {data: "lastName", title: "Last Name"},
+      {
+        data: "dateOfBirth",
+       title: "DOB",
+       render: function (val, type, doc) {
+          if (val instanceof Date) {
+            return moment(val).calendar();
+          } else {
+            return "Never";
+          }
+        }
+      },
+      {data: "conditions", title: "Conditions"}
 
     ]
   });
