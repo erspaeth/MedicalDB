@@ -62,3 +62,36 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
 
     ]
   });
+
+  TabularTables.VisitsForPatient = new Tabular.Table({
+    name: "Visits",
+    collection: Visits,
+    columns: [
+      {data: 'visitNumber', title: "Visit Number"},
+      {
+        data: 'date',
+        title: "Date",
+        render: function (val) {
+          if (val instanceof Date){
+            return moment(val).calendar();
+          } else {
+            return "";
+          }
+        }
+      },
+      {
+        data: 'clinic_id',
+        title: "Clinic",
+        render: function (val) {
+
+          var cName = Clinics.findOne({number: val}).name;
+          if (cName !== (null || undefined)){
+            return cName;
+          } else {
+            return "error";
+          }
+        }
+      },
+      {data: 'diagnosis', title: "Diagnosis"}
+    ]
+  });
