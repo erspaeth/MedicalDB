@@ -29,7 +29,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
        title: "DOB",
        render: function (val, type, doc) {
           if (val instanceof Date) {
-            return moment(val).calendar();
+            return moment.utc(val).calendar();
           } else {
             return "Never";
           }
@@ -54,7 +54,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
        title: "DOB",
        render: function (val, type, doc) {
           if (val instanceof Date) {
-            return moment(val).calendar();
+            return moment.utc(val).calendar();
           } else {
             return "Never";
           }
@@ -75,7 +75,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
         title: "Date",
         render: function (val) {
           if (val instanceof Date){
-            return moment(val).calendar();
+            return moment.utc(val).calendar();
           } else {
             return "";
           }
