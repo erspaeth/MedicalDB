@@ -21,6 +21,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
     name: "Patient List",
     collection: Patients,
     columns: [
+      {data: "patientNum", title: "Patient Number"},
       {data: "firstName", title: "First Name"},
       {data: "lastName", title: "Last Name"},
       {
@@ -45,6 +46,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
     name: "Advanced Patient Search",
     collection: Patients,
     columns: [
+      {data: "patientNum", title: "Patient Number"},
       {data: "firstName", title: "First Name"},
       {data: "lastName", title: "Last Name"},
       {
