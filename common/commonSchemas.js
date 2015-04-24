@@ -22,12 +22,18 @@ Schemas.FindPatientForm = new SimpleSchema({
 
 });
 
-Schemas.AdvancedSearchConditions = new SimpleSchema({
+Schemas.AdvancedSearch = new SimpleSchema({
 
   conditions: {
     type: [String],
     label: "Conditions",
     optional: true
+  },
+  icd9Primary: {
+    type: [String],
+    label: "ICD Primary Codes",
+    regEx: /^([EV])?\d{3,3}(\.\d{1,2})?$/,
+    optional:true
   }
 
 });

@@ -3,27 +3,36 @@ SearchResults = new Mongo.Collection('searchResults');
 
 Template.advancedSearch.onCreated(function(){
 
-  AdvancedSearchSelector = new ReactiveVar({});
+  AdvancedPatientSelectorArray = new ReactiveArray();
+  AdvancedVisitSelectorArray = new ReactiveArray();
 
 });
 
 AutoForm.hooks({
 
-  conditionsSearchForm: {
+  advancedSearchForm: {
     onSubmit: function (insertDoc, updateDoc, currentDoc) {
 
       this.event.preventDefault();
-      var input = insertDoc.conditions;
 
+      AdvancedPatientSelectorArray.clear();
+      AdvancedVisitSelectorArray.clear();
 
-
-
-      if (input === (null || undefined)){
-        this.done();
-        return false;
+      //Grab conditions and add those to selector
+      var inputConditions = insertDoc.conditions;
+      if (inputConditions !== (null || undefined)){
+        AdvancedPatientSelectorArray.push({conditions: {$in: inputConditions}});
       }
 
-      AdvancedSearchSelector.set({conditions: {$in: input}});
+
+      //Grab ICD9 and add to selector
+      var inputICD9 = insertDoc.icd9Primary;
+      console.log("input ICD9 =");
+      console.log(inputICD9);
+      if (inputICD9){
+        AdvancedVisitSelectorArray.push({icd9Primary: {$in: inputICD9}});
+      }
+
       this.done();
       return false;
     }
@@ -34,7 +43,14 @@ AutoForm.hooks({
 
       this.event.preventDefault();
 
-      AdvancedSearchSelector.set({dateOfBirth: {$gte: insertDoc.date1, $lte: insertDoc.date2}});
+/*
+The Selectors doesn't necessarily need to be cleared
+We could just use date to filter stuff more
+*/
+      AdvancedPatientSelectorArray.clear();
+      AdvancedVisitSelectorArray.clear();
+
+      AdvancedPatientSelectorArray.push({dateOfBirth: {$gte: insertDoc.date1, $lte: insertDoc.date2}});
 
       this.done();
       return false;
@@ -48,11 +64,31 @@ Template.advancedSearch.helpers({
 
   advancedSelector: function(){
 
-    if (_.isNull(AdvancedSearchSelector.get())){
-      return null;
+    var patientSelector = AdvancedPatientSelectorArray.array();
+    var visitSelector = AdvancedVisitSelectorArray.array();
+    var selector;
+
+
+    if (visitSelector.length > 0){
+
+      selector = {$and: visitSelector};
+      var visitSelectedPatients = Visits.find(selector,{patient_id:1}).fetch();
+
+      visitSelectedPatients = _.map(visitSelectedPatients, function(visit){
+        return visit.patient_id;
+      });
+      patientSelector.push({_id: {$in: visitSelectedPatients}});
+    }
+
+    if (patientSelector.length === 0){
+      console.log("empty selector");
+      return {};
     }
     else{
-      return AdvancedSearchSelector.get();
+      selector = {$and: patientSelector};
+      console.log("full selector =");
+      console.log(selector);
+      return selector;
     }
   }
 
