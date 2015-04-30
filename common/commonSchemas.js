@@ -73,6 +73,23 @@ Schemas.AdvancedSearch = new SimpleSchema({
     type: Date,
     label: "Before",
     optional: false
+  },
+  studyType: {
+    type: String,
+    label: "Study Type",
+    optional: true,
+    autoform: {
+      type: "select",
+      options: function() {
+        var types = StudyTypes.find().fetch();
+
+        var returnList = _.map(types, function (t){
+          return {label: t.name, value: t._id};
+        });
+
+        return returnList;
+      }
+    }
   }
 
 });
