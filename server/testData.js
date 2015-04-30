@@ -73,7 +73,7 @@ if (Patients.find().count() === 0){
 //Visits
     var patient = Patients.findOne({lastName: 'Pratchett'});
     var clinic = Clinics.findOne({number: 1});
-    var studyT = StudyType.findOne({name: 'Diagnostic Study'});
+    var studyT = StudyTypes.findOne({name: 'Diagnostic Study'});
     var sys = Systems.findOne({name: 'RADREX-i'});
 
     var myVisit = {
@@ -98,7 +98,7 @@ if (Patients.find().count() === 0){
 
     patient = Patients.findOne({lastName: 'Ogg'});
     clinic = Clinics.findOne({number: 1});
-    studyT = StudyType.findOne({name: 'Diagnostic Study'});
+    studyT = StudyTypes.findOne({name: 'Diagnostic Study'});
     sys = Systems.findOne({name: 'Stryker Laparoscopy Tower'});
 
     myVisit = {
