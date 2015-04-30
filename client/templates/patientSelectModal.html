@@ -3,7 +3,7 @@
 <template name="patientSelectModal">
 
     <div class="modal fade">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -13,9 +13,11 @@
                 </div>
 
                 <div class="modal-body">
-
+<!--
+  Testing table without class=condensed
                   {{> tabular table=TabularTables.Patients class="table table-hover table-striped table-bordered table-condensed"}}
-
+-->
+                  {{> tabular table=TabularTables.Patients class="table table-hover table-striped table-bordered"}}
                 </div>
 
                 <div class="modal-footer">

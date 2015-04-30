@@ -21,6 +21,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
     name: "Patient List",
     collection: Patients,
     columns: [
+      {data: "patientNum", title: "Patient Number"},
       {data: "firstName", title: "First Name"},
       {data: "lastName", title: "Last Name"},
       {
@@ -28,7 +29,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
        title: "DOB",
        render: function (val, type, doc) {
           if (val instanceof Date) {
-            return moment(val).calendar();
+            return moment.utc(val).calendar();
           } else {
             return "Never";
           }
@@ -45,6 +46,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
     name: "Advanced Patient Search",
     collection: Patients,
     columns: [
+      {data: "patientNum", title: "Patient Number"},
       {data: "firstName", title: "First Name"},
       {data: "lastName", title: "Last Name"},
       {
@@ -52,7 +54,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
        title: "DOB",
        render: function (val, type, doc) {
           if (val instanceof Date) {
-            return moment(val).calendar();
+            return moment.utc(val).calendar();
           } else {
             return "Never";
           }
@@ -73,7 +75,7 @@ Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
         title: "Date",
         render: function (val) {
           if (val instanceof Date){
-            return moment(val).calendar();
+            return moment.utc(val).calendar();
           } else {
             return "";
           }
