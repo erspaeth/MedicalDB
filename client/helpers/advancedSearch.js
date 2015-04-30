@@ -56,6 +56,11 @@ AutoForm.hooks({
         AdvancedPatientSelectorArray.push({secondaryProvider: inputSecondaryProvider});
       }
 
+      var inputStudyType = insertDoc.studyType;
+      if (inputStudyType){
+        AdvancedVisitSelectorArray.push({studyType: inputStudyType});
+      }
+
       this.done();
       return false;
     }
