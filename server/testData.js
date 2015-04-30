@@ -3,8 +3,8 @@
 */
 Meteor.startup(function () {
 
-// Patients
-if (true){
+// Sample Patients and visits
+if (Patients.find().count() === 0){
   var patient1 = {
     firstName: 'Gytha',
     lastName: 'Ogg',
@@ -68,30 +68,27 @@ if (true){
   };
 
   Patients.insert(patient4);
-}
-
-});
 
 
 //Visits
-
-/*
-
-  When adding a Visit:
-
-    var patient = Patients.findOne({lastName: 'sample last name'}).;
+    var patient = Patients.findOne({lastName: 'Pratchett'});
+    var clinic = Clinics.findOne({number: 1});
+    var studyT = StudyType.findOne({name: 'Diagnostic Study'});
+    var sys = Systems.findOne({name: 'RADREX-i'});
 
     var myVisit = {
 
-      visitNumber: ____        // 4 digit number as defined in schema
-      patient_id: patient._id   // grab the _id from the patient you grabbed above
-      other field:
-      another field:
-      etc. . .
-    }
+      patient_id: patient._id,
+      visitNumber: 1234,
+      clinic_id: clinic._id,
+      icd9Primary: 300.00,
+      diagnosis: "Anxiety State",
+      studyType: studyT._id,
+      systemUsed: sys._id
+
+    };
 
     var myVisitID = Visits.insert(myVisit);
-
 
     //this first {} is the selector, this tells which patient we are updating
     // the second {} says what update we are making, use $push to add the visitID
@@ -99,4 +96,25 @@ if (true){
 
     Patients.update({_id: patient._id}, {$push: {visits: myVisitID}});
 
-*/
+    patient = Patients.findOne({lastName: 'Ogg'});
+    clinic = Clinics.findOne({number: 1});
+    studyT = StudyType.findOne({name: 'Diagnostic Study'});
+    sys = Systems.findOne({name: 'Stryker Laparoscopy Tower'});
+
+    myVisit = {
+
+      patient_id: patient._id,
+      visitNumber: 4321,
+      clinic_id: clinic._id,
+      icd9Primary: 303.00,
+      diagnosis: "Alcohol Poisoning",
+      studyType: studyT._id,
+      systemUsed: sys._id
+
+    };
+
+    myVisitID = Visits.insert(myVisit);
+
+    Patients.update({_id: patient._id}, {$push: {visits: myVisitID}});
+  }
+});
