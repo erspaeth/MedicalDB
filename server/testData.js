@@ -8,14 +8,14 @@ if (Patients.find().count() === 0){
   var patient1 = {
     firstName: 'Gytha',
     lastName: 'Ogg',
-    dateOfBirth: '05/29/1915',
+    dateOfBirth: new Date('05/29/1915'),
     patientNum: '0000',
     gender: 'F',
-    height: '60',
-    weight: '250',
+    height: 60,
+    weight: 250,
     conditions: ['Addiction (Alcohol Abuse)'],
     assistiveDevices: [],
-    primaryProvider: '',
+    primaryProvider: 'B. Aard-vark',
     visits: []
   };
 
@@ -24,14 +24,14 @@ if (Patients.find().count() === 0){
   var patient2 = {
     firstName: 'Samuel',
     lastName: 'Vimes',
-    dateOfBirth: '08/13/1949',
+    dateOfBirth: new Date('08/13/1949'),
     patientNum: '0001',
     gender: 'M',
-    height: '65',
-    weight: '200',
+    height: 65,
+    weight: 200,
     conditions: ['Scoliosis'],
     assistiveDevices: ['Walking Cane'],
-    primaryProvider: '',
+    primaryProvider: 'A Chole',
     visits: []
   };
 
@@ -40,14 +40,14 @@ if (Patients.find().count() === 0){
   var patient3 = {
     firstName: 'Mustrum',
     lastName: 'Ridcully',
-    dateOfBirth: '02/20/2004',
+    dateOfBirth: new Date('02/20/2004'),
     patientNum: '0002',
     gender: 'M',
-    height: '45',
-    weight: '95',
+    height: 45,
+    weight: 95,
     conditions: ['Epilepsy'],
-    assistiveDevices: [''],
-    primaryProvider: '',
+    assistiveDevices: [],
+    primaryProvider: 'C. Underhill',
     visits: []
   };
 
@@ -56,14 +56,14 @@ if (Patients.find().count() === 0){
   var patient4 = {
     firstName: 'Terry',
     lastName: 'Pratchett',
-    dateOfBirth: '04/28/1948',
+    dateOfBirth: new Date('04/28/1948'),
     patientNum: '0003',
     gender: 'M',
-    height: '67',
-    weight: '170',
+    height: 67,
+    weight: 170,
     conditions: ['Alzheimers'],
-    assistiveDevices: [''],
-    primaryProvider: '',
+    assistiveDevices: [],
+    primaryProvider: 'G. Masterton',
     visits: []
   };
 
@@ -72,19 +72,23 @@ if (Patients.find().count() === 0){
 
 //Visits
     var patient = Patients.findOne({lastName: 'Pratchett'});
+    console.log(patient);
     var clinic = Clinics.findOne({number: 1});
+    console.log(clinic);
     var studyT = StudyTypes.findOne({name: 'Diagnostic Study'});
+    console.log(studyT);
     var sys = Systems.findOne({name: 'RADREX-i'});
+    console.log(sys);
 
     var myVisit = {
 
       patient_id: patient._id,
       visitNumber: 1234,
-      clinic_id: clinic._id,
-      icd9Primary: 300.00,
-      diagnosis: "Anxiety State",
-      studyType: studyT._id,
-      systemUsed: sys._id
+      clinic_id: clinic.number,
+      icd9Primary: [300.00],
+      diagnosis: ["Anxiety State"],
+      studyType: [studyT._id],
+      systemUsed: [sys._id]
 
     };
 
@@ -105,11 +109,11 @@ if (Patients.find().count() === 0){
 
       patient_id: patient._id,
       visitNumber: 4321,
-      clinic_id: clinic._id,
-      icd9Primary: 303.00,
-      diagnosis: "Alcohol Poisoning",
-      studyType: studyT._id,
-      systemUsed: sys._id
+      clinic_id: clinic.number,
+      icd9Primary: [303.00],
+      diagnosis: ["Alcohol Poisoning"],
+      studyType: [studyT._id],
+      systemUsed: [sys._id]
 
     };
 
