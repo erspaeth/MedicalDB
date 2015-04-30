@@ -34,20 +34,44 @@ Schemas.AdvancedSearch = new SimpleSchema({
     label: "ICD Primary Codes",
     regEx: /^([EV])?\d{3,3}(\.\d{1,2})?$/,
     optional:true
-  }
+  },
+  gender: {
+    type: Boolean,
+    label: "Gender",
+    optional: true,
+    autoform: {
+      type: "boolean-select",
+      trueLabel: "Male",
+      falseLabel: "Female",
+      firstOption: "(Select gender)"
+    }
+  },
+  primaryProvider: {
+    type: String,
+    label: "Primary Provider",
+    optional: true
+  },
+  secondaryProvider: {
+    type: String,
+    label: "Secondary Provider",
+    optional: true
+  },
 
-});
+  dobRange: {
+    type: Object,
+    label: "Date of Birth",
+    blackbox: false,
+    optional: true
+  },
 
-Schemas.AdvancedSearchDOB = new SimpleSchema({
-
-  date1: {
+  'dobRange.date1':{
     type: Date,
-    label: "Early Date",
+    label: "After",
     optional: false
   },
-  date2: {
+  'dobRange.date2': {
     type: Date,
-    label: "Late Date",
+    label: "Before",
     optional: false
   }
 
