@@ -14,7 +14,8 @@ Template.patientSidebarSelect.events({
 
   'click #openPatientModalButton': function(){
 
-    Modal.show('patientSelectModal');
+    Blaze.render(Template.patientSelectModal, document.body);
+    $('#patientSelect-modal').modal('show');
 
   }
 
