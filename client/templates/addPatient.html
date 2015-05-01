@@ -3,19 +3,33 @@
   {{#autoForm collection="Patients" id="insertPatientForm" type="insert"}}
     <fieldset>
       <legend>Add A New Patient</legend>
+
       <div class='row'>
-        <div class='col-sm-6'>
+
+        <div class='col-sm-4'>
+          {{> afQuickField name="patientNum"}}
+        </div>
+        <div class='col-sm-8'>
+        </div>
+
+      </div>
+      <div class='row'>
+
+        <div class='col-sm-4'>
           {{> afQuickField name="firstName"}}
+          {{> afQuickField name="dateOfBirth" type="date"}}
         </div>
-        <div class='col-sm-6'>
+        <div class='col-sm-4'>
           {{> afQuickField name="lastName"}}
+          {{> afQuickField name="primaryProvider"}}
         </div>
-    </div>
-      {{> afQuickField name="dateOfBirth" type="date"}}
-      {{> afQuickField name="patientNum"}}
-      {{> afQuickField name="gender" options=genderOption noselect="true"}}
-      {{> afQuickField name="primaryProvider"}}
-      {{> afQuickField name="secondaryProvider"}}
+        <div class='col-sm-4'>
+          {{> afQuickField name="gender" options=genderOption noselect="true"}}
+          {{> afQuickField name="secondaryProvider"}}
+        </div>
+
+      </div>
+
       <button type="submit" class="btn btn-primary">Submit</button>
     </fieldset>
 
