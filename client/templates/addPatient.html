@@ -3,8 +3,14 @@
   {{#autoForm collection="Patients" id="insertPatientForm" type="insert"}}
     <fieldset>
       <legend>Add A New Patient</legend>
-      {{> afQuickField name="firstName"}}
-      {{> afQuickField name="lastName"}}
+      <div class='row'>
+        <div class='col-sm-6'>
+          {{> afQuickField name="firstName"}}
+        </div>
+        <div class='col-sm-6'>
+          {{> afQuickField name="lastName"}}
+        </div>
+    </div>
       {{> afQuickField name="dateOfBirth" type="date"}}
       {{> afQuickField name="patientNum"}}
       {{> afQuickField name="gender" options=genderOption noselect="true"}}

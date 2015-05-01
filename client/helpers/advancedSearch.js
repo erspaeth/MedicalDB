@@ -15,6 +15,9 @@ AutoForm.hooks({
 
       this.event.preventDefault();
 
+      console.log("insertDoc");
+      console.log(insertDoc);
+
       AdvancedPatientSelectorArray.clear();
       AdvancedVisitSelectorArray.clear();
 
@@ -44,6 +47,11 @@ AutoForm.hooks({
         }
       }
 
+      //Grab DOB range and add to selector
+      if(insertDoc.dobRange){
+        AdvancedPatientSelectorArray.push({dateOfBirth: {$gte: insertDoc.dobRange.date1, $lte: insertDoc.dobRange.date2}});
+      }
+
       // Grab primaryProvider input and add to selector
       var inputPrimaryProvider = insertDoc.primaryProvider;
       if (inputPrimaryProvider){
@@ -60,6 +68,9 @@ AutoForm.hooks({
       if (inputStudyType){
         AdvancedVisitSelectorArray.push({studyType: inputStudyType});
       }
+
+      Blaze.render(Template.advancedSearchResultsModal, document.body);
+      $('#advancedSearchResults-modal').modal('show');
 
       this.done();
       return false;
@@ -88,7 +99,7 @@ We could just use date to filter stuff more
 
 });
 
-Template.advancedSearch.helpers({
+Template.advancedSearchResultsModal.helpers({
 
   advancedSelector: function(){
 
@@ -109,20 +120,17 @@ Template.advancedSearch.helpers({
     }
 
     if (patientSelector.length === 0){
-      console.log("empty selector");
       return {};
     }
     else{
       selector = {$and: patientSelector};
-      console.log("full selector =");
-      console.log(selector);
       return selector;
     }
   }
 
 });
 
-Template.advancedSearch.events({
+Template.advancedSearchResultsModal.events({
 
   'click tbody > tr': function (event) {
 
