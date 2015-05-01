@@ -1,6 +1,38 @@
 <template name="advancedSearch">
-
+<!--
     {{> quickForm schema="Schemas.AdvancedSearch" id="advancedSearchForm" type="normal"}}
+-->
+    {{#autoForm schema="Schemas.AdvancedSearch" id="advancedSearchForm" type="normal"}}
+    <fieldset>
+      <legend>Advanced Search</legend>
+      <div class='row'>
+        <div class='col-sm-6'>
+        {{>afQuickField name="gender"}}
+        {{>afQuickField name="primaryProvider"}}
+        </div>
+        <div class='col-sm-6'>
+          {{>afQuickField name="studyType"}}
+          {{>afQuickField name="secondaryProvider"}}
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-sm-4'>
+          {{>afQuickField name="dobRange"}}
+        </div>
+        <div class='col-sm-4'>
+            {{>afQuickField name="conditions"}}
+        </div>
+        <div class='col-sm-4'>
+        {{>afQuickField name="icd9Primary"}}
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </fieldset>
+    {{/autoForm}}
 
 </template>
 
