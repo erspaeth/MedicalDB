@@ -5,12 +5,11 @@
       <legend>Visit</legend>
       {{> afQuickField name="visitNumber"}}
       {{> afQuickField name="clinic_id" options=clinicSelectOption}}
+      {{> afQuickField name="studyType" type="select-checkbox-inline" options=studyTypeSelectOptions}}
+      {{> afQuickField name="systemUsed" type="select-checkbox-inline" options=systemUsedSelectOptions}}    
       {{> afQuickField name="icd9Primary"}}
       {{> afQuickField name="icd9Secondary"}}
       {{> afQuickField name="diagnosis"}}
-
-      {{> afQuickField name="studyType"}}
-      {{> afQuickField name="systemUsed"}}
       {{> afQuickField name="treatment"}}
       {{> afQuickField name="tests"}}
       <button type="submit" class="btn btn-primary">Submit</button>

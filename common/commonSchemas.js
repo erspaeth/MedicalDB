@@ -125,7 +125,7 @@ Schemas.addVisitForm = new SimpleSchema({
     type: [String],
     label: "Diagnosis",
     defaultValue: [],
-    optional:false
+    optional:false,
   },
   studyType:{
     type: [String],
