@@ -1,6 +1,6 @@
 <template name="addPatient">
 
-  {{#autoForm collection="Patients" id="insertPatientForm" type="insert"}}
+  {{#autoForm collection="Patients" id="insertPatientForm" type="normal"}}
     <fieldset>
       <legend>Add A New Patient</legend>
 
@@ -35,4 +35,37 @@
 
   {{/autoForm}}
 
+</template>
+
+<template name="patientAdded">
+  <!-- set up the modal to start hidden and fade in and out -->
+  <div id="patientAdded-modal" class="modal fade" data-backdrop="static">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Patient Added</h4>
+              </div>
+              <!-- dialog body -->
+              <div class="modal-body">
+
+                {{#with currentPatientDoc}}
+
+                <p><b>Patient Number:</b> {{patientNum}}</p>
+                <p><b>Name:</b> {{firstName}} {{lastName}}</p>
+                <p><b>Date Of Birth:</b> {{dateOfBirth}}</p>
+                <p><b>Gender:</b> {{gender}}</p>
+                <p><b>Primary Provider:</b> {{primaryProvider}}</p>
+                <p><b>Secondary Provider:</b> {{secondaryProvider}}</p>
+                <br />
+
+                {{/with}}
+
+              </div>
+              <div class='modal-footer'>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+              </div>
+          </div>
+      </div>
+  </div>
 </template>

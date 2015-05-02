@@ -12,14 +12,33 @@ AutoForm.hooks({
 
       if(Patients.update({_id: pID}, {$push: {visits: visitID}})){
 
-        // add success message
-        console.log("patient updated with new visit");
-        console.log (Patients.findOne({_id: pID}));
+        Session.set('visitID', visitID);
+
+        Blaze.render(Template.visitAdded, document.body);
+        $('#visitAdded-modal').modal('show');
+
       }
       this.done();
       return false;
     }
   }
+});
+
+Template.visitAdded.helpers({
+
+  selectedVisit: function() {
+    return Visits.findOne({_id: Session.get('visitID')});
+  },
+  getClinicName: function() {
+    return Clinics.findOne({number: this.clinic_id}).name;
+  },
+  getStudyType: function(){
+    return StudyTypes.findOne({_id: this.valueOf()}).name;
+  },
+  getSystemName: function() {
+    return Systems.findOne({_id: this.valueOf()}).name;
+  }
+
 });
 
 Template.addVisit.helpers({

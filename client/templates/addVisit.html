@@ -31,3 +31,75 @@
 
 
 </template>
+
+<template name="visitAdded">
+  <!-- set up the modal to start hidden and fade in and out -->
+  <div id="visitAdded-modal" class="modal fade" data-backdrop="static">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Visit Added for: {{currentPatientName}}</h4>
+              </div>
+              <!-- dialog body -->
+              <div class="modal-body">
+
+                {{#with selectedVisit}}
+
+                <p><b>Visit Number:</b> {{visitNumber}}</p>
+
+                <p><b>Clinic:</b> {{getClinicName}}</p>
+                <p><b>Date:</b> {{formatDate date}}</p>
+
+                <p><b>Study Type:</b></p>
+                <ul>
+                {{#each studyType}}
+                  <li>{{getStudyType}}</li>
+                {{/each}}
+                </ul>
+
+                <p><b>Diagnosis(es):</b></p>
+                <ul>
+                {{#each diagnosis}}
+                  <li>{{this}}</li>
+                {{/each}}
+                </ul>
+
+                <p><b>ICD9 Primary:</b></p>
+                <ul>
+                {{#each icd9Primary}}
+                  <li>{{this}}</li>
+                {{/each}}
+                </ul>
+
+                <p><b>ICD9 Secondary:</b></p>
+                <ul>
+                {{#each icd9Secondary}}
+                  <li>{{this}}</li>
+                {{/each}}
+                </ul>
+
+                <p><b>Treatment(s):</b></p>
+                <ul>
+                {{#each treatment}}
+                  <li>{{this}}</li>
+                {{/each}}
+                </ul>
+
+                <p><b>Systems Used:</b></p>
+                <ul>
+                {{#each systemUsed}}
+                  <li>{{getSystemName}}</li>
+                {{/each}}
+                </ul>
+
+                {{/with}}
+
+              </div>
+              <div class='modal-footer'>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</template>
