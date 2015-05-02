@@ -17,14 +17,24 @@
 
         <div class='col-sm-4'>
           {{> afQuickField name="firstName"}}
-          {{> afQuickField name="dateOfBirth" type="date"}}
         </div>
         <div class='col-sm-4'>
           {{> afQuickField name="lastName"}}
-          {{> afQuickField name="primaryProvider"}}
         </div>
         <div class='col-sm-4'>
           {{> afQuickField name="gender" options=genderOption noselect="true"}}
+        </div>
+
+      </div>
+      <div class='row'>
+
+        <div class='col-sm-4'>
+          {{> afQuickField name="dateOfBirth" type="date"}}
+        </div>
+        <div class='col-sm-4'>
+          {{> afQuickField name="primaryProvider"}}
+        </div>
+        <div class='col-sm-4'>
           {{> afQuickField name="secondaryProvider"}}
         </div>
 

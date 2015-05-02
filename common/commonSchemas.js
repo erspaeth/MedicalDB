@@ -121,7 +121,17 @@ Schemas.addVisitForm = new SimpleSchema({
     type: String,
     label: "Visit Number",
     optional:false,
-    regEx: /^[\d]{4}$/
+    regEx: /^[\d]{4}$/,
+    custom: function(){
+      console.log('custom validation called with value:');
+      console.log(this.value);
+      if (Visits.find({visitNumber: this.value}).count() > 0){
+        return "Visit Number must be unique here i am";
+      }
+      else{
+        return true;
+      }
+    }
   },
   clinic_id:{
     type: Number,

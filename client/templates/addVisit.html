@@ -1,6 +1,6 @@
 <template name="addVisit">
 
-  {{#autoForm schema="Schemas.addVisitForm" id="addVisitForm" type="normal"}}
+  {{#autoForm schema="Schemas.addVisitForm" id="addVisitForm" type="normal" validation='blur'}}
     <fieldset>
       <legend>New Visit: {{currentPatientName}}</legend>
 
