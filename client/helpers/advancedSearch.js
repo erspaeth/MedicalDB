@@ -15,9 +15,6 @@ AutoForm.hooks({
 
       this.event.preventDefault();
 
-      console.log("insertDoc");
-      console.log(insertDoc);
-
       AdvancedPatientSelectorArray.clear();
       AdvancedVisitSelectorArray.clear();
 
@@ -38,11 +35,9 @@ AutoForm.hooks({
       var inputGenderBoolean = insertDoc.gender;
       if (inputGenderBoolean !== (null || undefined)){
         if(inputGenderBoolean === true){
-          console.log("searching for males");
           AdvancedPatientSelectorArray.push({gender: {$in: ["M", "m"]}});
         }
         else if(inputGenderBoolean === false){
-          console.log("searching for females");
           AdvancedPatientSelectorArray.push({gender: {$in: ["F", "f"]}});
         }
       }
@@ -87,8 +82,6 @@ Template.advancedSearchResultsModal.helpers({
     var visitSelector = AdvancedVisitSelectorArray.array();
     var selector;
     var advancedQuerySelector = AutoForm.getFieldValue('queryOptions', 'queryOptionsForm');
-    console.log('advanced query selector = ');
-    console.log(advancedQuerySelector);
     var visitSelectedPatients;
 
     if (visitSelector.length > 0){
