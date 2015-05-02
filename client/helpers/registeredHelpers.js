@@ -8,7 +8,7 @@ Template.registerHelper('currentPatientName', function(){
 
   var r = "none";
 
-  if (Session.get("currentPatient") !== (null || undefined)){
+  if (!Session.equals("currentPatient", null) && !Session.equals("currentPatient", undefined)){
     var pID = Session.get("currentPatient");
     var p = Patients.findOne({_id: pID});
     r = p.firstName + " " + p.lastName;
@@ -19,7 +19,7 @@ Template.registerHelper('currentPatientName', function(){
 
 Template.registerHelper('currentPatientSelected', function(){
 
-  if (Session.get("currentPatient") === (null || undefined)){
+  if (Session.equals("currentPatient", null) || Session.equals("currentPatient", undefined)){
     return false;
   }
   else
@@ -31,8 +31,6 @@ Template.registerHelper('currentPatientDoc', function(){
 
   var pID = Session.get("currentPatient");
   var p = Patients.findOne({_id: pID});
-  console.log("returned document");
-  console.log(p);
   return p;
 
 });
