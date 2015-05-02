@@ -31,7 +31,7 @@ Schemas.AdvancedSearch = new SimpleSchema({
   },
   icd9Primary: {
     type: [String],
-    label: "ICD Primary Codes",
+    label: "ICD Codes",
     regEx: /^([EV])?\d{3,3}(\.\d{1,2})?$/,
     optional:true
   },
