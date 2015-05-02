@@ -1,4 +1,4 @@
-Template.sidebarMenu.helpers({
+/*Template.sidebarMenu.helpers({
 
   patientSelected: function(){
 
@@ -8,7 +8,7 @@ Template.sidebarMenu.helpers({
       return true;
   }
 
-});
+});*/
 
 Template.patientSidebarSelect.events({
 
@@ -17,6 +17,12 @@ Template.patientSidebarSelect.events({
     Blaze.render(Template.patientSelectModal, document.body);
     $('#patientSelect-modal').modal('show');
 
-  }
+  },
+
+  'click #clearPatientButton': function(){
+    console.log('clear button clicked');
+    Session.set('currentPatient', null);
+    console.log(Session.get('currentPatient'));
+  },
 
 });
