@@ -72,20 +72,16 @@ if (Patients.find().count() === 0){
 
 //Visits
     var patient = Patients.findOne({lastName: 'Pratchett'});
-    console.log(patient);
     var clinic = Clinics.findOne({number: 1});
-    console.log(clinic);
     var studyT = StudyTypes.findOne({name: 'Diagnostic Study'});
-    console.log(studyT);
     var sys = Systems.findOne({name: 'RADREX-i'});
-    console.log(sys);
 
     var myVisit = {
 
       patient_id: patient._id,
-      visitNumber: 1234,
+      visitNumber: '1234',
       clinic_id: clinic.number,
-      icd9Primary: [300.00],
+      icd9Primary: ['300.00'],
       diagnosis: ["Anxiety State"],
       studyType: [studyT._id],
       systemUsed: [sys._id]
@@ -108,12 +104,29 @@ if (Patients.find().count() === 0){
     myVisit = {
 
       patient_id: patient._id,
-      visitNumber: 4321,
+      visitNumber: '4321',
       clinic_id: clinic.number,
-      icd9Primary: [303.00],
+      icd9Primary: ['303.00'],
       diagnosis: ["Alcohol Poisoning"],
       studyType: [studyT._id],
       systemUsed: [sys._id]
+
+    };
+
+    myVisitID = Visits.insert(myVisit);
+
+    Patients.update({_id: patient._id}, {$push: {visits: myVisitID}});
+
+    myVisit = {
+
+      patient_id: patient._id,
+      visitNumber: '4322',
+      clinic_id: clinic.number,
+      icd9Primary: ['291.00'],
+      icd9Secondary: ['291.82'],
+      diagnosis: ["Alcohol Withdrawl Delirium", "Alcohol Induced Sleep Disorder"],
+      studyType: [studyT._id],
+      systemUsed: []
 
     };
 

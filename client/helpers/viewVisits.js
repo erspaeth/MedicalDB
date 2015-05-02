@@ -42,6 +42,11 @@ Template.visitInfoModal.helpers({
   getContext: function(){
     var c = Session.get('visitID');
     return Visits.findOne({_id: c});
+  },
+  getStudyType: function(){
+    console.log('getStudyType');
+    console.log(StudyTypes.findOne({_id: this.valueOf()}));
+    return StudyTypes.findOne({_id: this.valueOf()}).name;
   }
 
 });

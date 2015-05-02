@@ -104,7 +104,7 @@ Schemas.addVisitForm = new SimpleSchema({
   },
   clinic_id:{
     type: Number,
-    label: "Clinic Number",
+    label: "Clinic",
     optional:false
   },
   icd9Primary:{

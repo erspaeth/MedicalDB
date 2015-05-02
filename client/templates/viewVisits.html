@@ -23,13 +23,44 @@
                 <div class="modal-body">
 
                 {{#with getContext}}
-                  Visit Number: {{visitNumber}}
 
+                  <p>Visit Number: {{visitNumber}}</p>
+
+                  <p>Study Type:</p>
+                  <ul>
+                  {{#each studyType}}
+                    <li>{{getStudyType}}</li>
+                  {{/each}}
+                  </ul>
+
+                  <p>Diagnosis(es):</p>
                   <ul>
                   {{#each diagnosis}}
                     <li>{{this}}</li>
                   {{/each}}
-                </ul>
+                  </ul>
+
+                  <p>ICD9 Primary:</p>
+                  <ul>
+                  {{#each icd9Primary}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                  </ul>
+
+                  <p>ICD9 Secondary:</p>
+                  <ul>
+                  {{#each icd9Secondary}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                  </ul>
+
+                  <p>Treatment(s):</p>
+                  <ul>
+                  {{#each treatment}}
+                    <li>{{this}}</li>
+                  {{/each}}
+                  </ul>
+
                 {{/with}}
 
                 </div>
