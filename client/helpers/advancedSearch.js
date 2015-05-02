@@ -31,7 +31,7 @@ AutoForm.hooks({
       //Grab ICD9 and add to selector
       var inputICD9 = insertDoc.icd9Primary;
       if (inputICD9){
-        AdvancedVisitSelectorArray.push({icd9Primary: {$in: inputICD9}});
+        AdvancedVisitSelectorArray.push({$or: [{icd9Primary: {$in: inputICD9}}, {icd9Secondary: {$in: inputICD9}}]});
       }
 
       // Grav gender input and add to selector

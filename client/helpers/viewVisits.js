@@ -35,18 +35,22 @@ Template.viewVisits.events({
 
 Template.visitInfoModal.helpers({
 
-  c: function(){
+  /*c: function(){
     console.log("data context from helper");
     console.log(this);
-  },
+  },*/
   getContext: function(){
     var c = Session.get('visitID');
     return Visits.findOne({_id: c});
   },
   getStudyType: function(){
-    console.log('getStudyType');
-    console.log(StudyTypes.findOne({_id: this.valueOf()}));
     return StudyTypes.findOne({_id: this.valueOf()}).name;
+  },
+  getClinicName: function(){
+    return Clinics.findOne({number: this.clinic_id}).name;
+  },
+  getSystemName: function(){
+    return Systems.findOne({_id: this.valueOf()}).name;
   }
 
 });
