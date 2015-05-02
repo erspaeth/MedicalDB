@@ -94,6 +94,27 @@ Schemas.AdvancedSearch = new SimpleSchema({
 
 });
 
+Schemas.queryOptions = new SimpleSchema({
+
+  queryOptions: {
+    type: Number,
+    label: "Query Options",
+    optional: false,
+    maxCount: 1,
+    defaultValue: 1,
+    autoform: {
+      type: "select-radio-inline",
+      options: function() {
+        return [
+          {label: "And Query", value: 1},
+          {label: "Or Query", value: 2}
+        ];
+      }
+    }
+  }
+
+});
+
 Schemas.addVisitForm = new SimpleSchema({
 
   visitNumber:{

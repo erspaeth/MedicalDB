@@ -2,6 +2,7 @@
 <!--
     {{> quickForm schema="Schemas.AdvancedSearch" id="advancedSearchForm" type="normal"}}
 -->
+
     {{#autoForm schema="Schemas.AdvancedSearch" id="advancedSearchForm" type="normal"}}
     <fieldset>
       <legend>Advanced Search</legend>
@@ -26,13 +27,12 @@
         <div class='col-sm-4'>
         {{>afQuickField name="icd9Primary"}}
         </div>
-
       </div>
-
       <button type="submit" class="btn btn-primary">Submit</button>
 
     </fieldset>
     {{/autoForm}}
+    {{>quickForm schema='Schemas.queryOptions' id="queryOptionsForm" type='readonly' buttonContent='false'}}
 
 </template>
 

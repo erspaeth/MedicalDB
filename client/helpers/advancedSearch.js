@@ -77,26 +77,6 @@ AutoForm.hooks({
     }
   },
 
-  dobSearchForm: {
-    onSubmit: function(insertDoc, updateDoc, currentDoc) {
-
-      this.event.preventDefault();
-
-/*
-The Selectors doesn't necessarily need to be cleared
-We could just use date to filter stuff more
-*/
-      AdvancedPatientSelectorArray.clear();
-      AdvancedVisitSelectorArray.clear();
-
-      AdvancedPatientSelectorArray.push({dateOfBirth: {$gte: insertDoc.date1, $lte: insertDoc.date2}});
-
-      this.done();
-      return false;
-
-    }
-  }
-
 });
 
 Template.advancedSearchResultsModal.helpers({
@@ -106,12 +86,21 @@ Template.advancedSearchResultsModal.helpers({
     var patientSelector = AdvancedPatientSelectorArray.array();
     var visitSelector = AdvancedVisitSelectorArray.array();
     var selector;
-
+    var advancedQuerySelector = AutoForm.getFieldValue('queryOptions', 'queryOptionsForm');
+    console.log('advanced query selector = ');
+    console.log(advancedQuerySelector);
+    var visitSelectedPatients;
 
     if (visitSelector.length > 0){
 
-      selector = {$and: visitSelector};
-      var visitSelectedPatients = Visits.find(selector,{patient_id:1}).fetch();
+      if(advancedQuerySelector === 1){
+        selector = {$and: visitSelector};
+        visitSelectedPatients = Visits.find(selector,{patient_id:1}).fetch();
+      }
+      else if(advancedQuerySelector === 2){
+        selector = {$or: visitSelector};
+        visitSelectedPatients = Visits.find(selector,{patient_id:1}).fetch();
+      }
 
       visitSelectedPatients = _.map(visitSelectedPatients, function(visit){
         return visit.patient_id;
@@ -122,8 +111,13 @@ Template.advancedSearchResultsModal.helpers({
     if (patientSelector.length === 0){
       return {};
     }
-    else{
+
+    else if (advancedQuerySelector === 1){
       selector = {$and: patientSelector};
+      return selector;
+    }
+    else if (advancedQuerySelector === 2){
+      selector = {$or: patientSelector};
       return selector;
     }
   }
