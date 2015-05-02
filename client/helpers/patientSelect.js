@@ -1,14 +1,3 @@
-/*Template.sidebarMenu.helpers({
-
-  patientSelected: function(){
-
-    if (Session.get("selectedPatient") === (null || undefined) )
-      return false;
-    else
-      return true;
-  }
-
-});*/
 
 Template.patientSidebarSelect.events({
 
@@ -20,9 +9,9 @@ Template.patientSidebarSelect.events({
   },
 
   'click #clearPatientButton': function(){
-    console.log('clear button clicked');
+
     Session.set('currentPatient', null);
-    console.log(Session.get('currentPatient'));
+
   },
 
 });
