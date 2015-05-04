@@ -11,6 +11,7 @@ Template.patientSidebarSelect.events({
   'click #clearPatientButton': function(){
 
     Session.set('currentPatient', null);
+    Router.go('/');
 
   },
 
